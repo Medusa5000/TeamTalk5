@@ -16,7 +16,7 @@
  * client's version can be seen in the @a szVersion member of the
  * #User-struct. */
 
-#define TEAMTALK_VERSION "5.15.1.5136"
+#define TEAMTALK_VERSION "5.14.0.5128"
 
 
 #if defined(WIN32)
@@ -342,9 +342,6 @@ extern "C" {
         SOUNDSYSTEM_AUDIOUNIT = 8,
         /** @brief Same as #SOUNDSYSTEM_AUDIOUNIT. */
         SOUNDSYSTEM_AUDIOUNIT_IOS = SOUNDSYSTEM_AUDIOUNIT,
-        /** @brief PulseAudio API.
-         *  PulseAudio is typically used on Ubuntu 22. */
-        SOUNDSYSTEM_PULSEAUDIO = 10,
     } SoundSystem;
 
     /**
@@ -784,8 +781,6 @@ extern "C" {
         AFF_MP3_128KBIT_FORMAT   = 6,
         /** @see #AFF_MP3_16KBIT_FORMAT */
         AFF_MP3_256KBIT_FORMAT   = 7,
-        /** @see #AFF_MP3_16KBIT_FORMAT */
-        AFF_MP3_320KBIT_FORMAT   = 8,
     } AudioFileFormat;
 
     /**
@@ -1701,13 +1696,7 @@ extern "C" {
          * with #CHANNEL_NO_RECORDING. */
         USERRIGHT_RECORD_VOICE              = 0x00100000,
         /** @brief User can see hidden channels, #CHANNEL_HIDDEN. */
-        USERRIGHT_VIEW_HIDDEN_CHANNELS      = 0x00200000,
-        /** @brief User can send private text messages, i.e.
-         *  #MSGTYPE_USER. @see TT_DoTextMessage() */
-        USERRIGHT_TEXTMESSAGE_USER          = 0x00400000,
-        /** @brief User can send channel text messages, i.e.
-         *  #MSGTYPE_CHANNEL. @see TT_DoTextMessage() */
-        USERRIGHT_TEXTMESSAGE_CHANNEL       = 0x00800000,
+        USERRIGHT_VIEW_HIDDEN_CHANNELS      = 0x00200000
     } UserRight;
 
     /** 
@@ -1973,8 +1962,6 @@ extern "C" {
         TTCHAR szUsername[TT_STRLEN];
         /** @brief The type of ban that applies to this banned user. */
         BanTypes uBanTypes;
-        /** @brief The username of the user who made the ban */
-        TTCHAR szOwner[TT_STRLEN];
     } BannedUser;
 
     /** @ingroup users
@@ -2993,12 +2980,6 @@ extern "C" {
          * @see TT_DoBanUser() */
         CMDERR_CHANNEL_BANNED = 2015,
 
-        /** @brief Maximum number of file transfers exceeded.
-         *
-         *  @see TT_DoSendFile()
-         *  @see TT_DoRecvFile() */
-        CMDERR_MAX_FILETRANSFERS_EXCEEDED = 2016,
-
         /* COMMAND ERRORS 3000-3999 ARE DUE TO INVALID STATE OF CLIENT INSTANCE */
 
         /** @brief Client instance has not been authenticated.
@@ -3981,9 +3962,6 @@ extern "C" {
         __JITTERCONFIG            = 41,
         __WEBRTCAUDIOPREPROCESSOR = 42,
         __ENCRYPTIONCONTEXT       = 43,
-        __SOUNDDEVICEEFFECTS       = 44,
-        __DESKTOPWINDOW       = 45,
-        __ABUSEPREVENTION       = 46,
     } TTType;
 
     /**
